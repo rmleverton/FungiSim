@@ -1,3 +1,8 @@
+/* Name: Cell_Manager
+ * Date: 01/05/23
+ * Author: Robin Leverton
+ * Description: A cell manager object for a fungal simulation, to be added to a CellManager Gameobject in the Unity Scene
+ */
 using System.Collections;
 using System.Collections.Generic;
 using System.Text.Json;

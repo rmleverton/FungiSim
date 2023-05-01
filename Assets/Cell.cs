@@ -1,3 +1,9 @@
+/* Name: Cell
+ * Date: 01/05/23
+ * Author: Robin Leverton
+ * Description: A cell object for a fungal simulation
+ */
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

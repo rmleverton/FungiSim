@@ -1,3 +1,8 @@
+/* Name: Rotate_Scritp
+ * Date: 01/05/23
+ * Author: Robin Leverton
+ * Description: A script to rotate an object (camera) around the centre of the world given an input length of video
+ */
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting.FullSerializer;

@@ -1,0 +1,111 @@
+// Each #kernel tells which function to compile; you can have many kernels
+#pragma kernel CSMain
+struct _Tile {
+	int id, idx, idy, idz;
+	float val, startingVal;
+	string species;
+
+	bool dormant;
+
+	float4 colour;
+	RWStructuredBuffer<_Tile> neighbours, seekers;
+
+	float3 pos, dir;
+};
+
+int id, idx, idy, idz;
+int parentNodeId, parentId;
+
+int tileRes, tileSize;
+
+float val, startingVal;
+float nodeVal, nodeThreshold;
+
+string species;
+
+bool dormant;
+
+float4 colour;
+RWStructuredBuffer<_Tile> neighbours, seekers;
+
+float3 pos, dir;
+
+
+// Create a RenderTexture with enableRandomWrite flag and set it
+// with cs.SetTexture
+RWTexture3D<_Tile> Tiles;
+
+[numthreads(8,8,8)]
+void CSMain (uint3 id : SV_DispatchThreadID)
+{
+    // TODO: insert actual code here!
+	_Tile thisTile = Tiles[id.xyz];
+	thisTile.idx = id.x;
+	thisTile.idy = id.y;
+	thisTile.idz = id.z;
+
+	CreateSeeker(thisTile);
+	thisTile.colour = GetColour(thisTile);
+	Tiles[id.xyz] = thisTile;
+}
+
+float4 GetColour(_Tile tile) 
+{
+	switch (tile.species) {
+	case "node": {
+		return (1, 0, 0, 1);
+		break;
+	}
+	case "seeker": {
+		return (0, 0, 1, 1);
+		break;
+	}
+	case "bg": {
+		return (0, 0, 0, 0);
+		break;
+	}
+	default: {
+		return(0, 0, 0, 0);
+		break;
+	}
+	}
+}
+
+void CreateSeeker(_tile tile) 
+{
+	if (tile.species I = "bg" && tile.species != "dormantSeeker" && tile.dormant == false) 
+	{
+		if (tile.species == "seeker" && length(seekers) > 1) 
+		{
+			return;
+		}
+
+		if (tile.val - length(tile.seekers) > 0.2)
+		{
+			int x = tile.idx + tile.dir.x;
+			int y = tile.idy + tile.dir.y;
+			int z = tile.idz + tile.dir.z;
+			if (x < tileRes && x >= 0
+				&& y < tileRes && y >= 0
+				&& z < tileRes && z >= 0)
+			{
+				int nIdFromVec = (x * tileRes) + y + (z * tileRes * tileRes);
+
+				_Tile[] nDir = new _Tile(Tiles[x, y, z].neighbours);
+				_Tile[] dirNeighbours = new _Tile()[17];
+
+				int counter = 0;
+				for (int i = 0; i < length(nDir); i++) 
+				{
+					for (int j = 0; j < length(tile.neighbours); j++)
+					{
+
+					}
+				}
+
+
+			}
+		}
+
+	}
+}
